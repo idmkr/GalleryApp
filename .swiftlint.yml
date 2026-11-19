@@ -1,0 +1,16 @@
+included:
+  - GalleryApp
+
+excluded:
+  - "**/.build"
+
+disabled_rules:
+  - trailing_whitespace
+
+line_length:
+  warning: 120
+  error: 160
+  ignores_comments: true
+
+identifier_name:
+  min_length: 2
