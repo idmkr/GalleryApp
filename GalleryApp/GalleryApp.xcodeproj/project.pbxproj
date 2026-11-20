@@ -28,6 +28,7 @@
 		CE1CFA9B30AF7F1600CFA418 /* GalleryAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GalleryAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1CFAA530AF7F1600CFA418 /* GalleryAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GalleryAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1CFB0630B042E400CFA418 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		CE1CFB0730B044DF00CFA418 /* Config.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.example.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -94,6 +95,7 @@
 				CE1CFAA830AF7F1600CFA418 /* GalleryAppUITests */,
 				CE1CFA8630AF7F1200CFA418 /* Products */,
 				CE1CFB0630B042E400CFA418 /* Config.xcconfig */,
+				CE1CFB0730B044DF00CFA418 /* Config.example.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
