@@ -21,10 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let stack = CoreDataStack()
         coreDataStack = stack
         let favourites = FavouritesRepository(stack: stack)
-        let viewModel = GalleryViewModel(service: PhotosService(), favourites: favourites)
-        let galleryViewController = GalleryViewController(viewModel: viewModel)
 
-        window.rootViewController = UINavigationController(rootViewController: galleryViewController)
+        window.rootViewController = MainTabBarController(favourites: favourites, service: PhotosService())
         window.makeKeyAndVisible()
         self.window = window
     }
