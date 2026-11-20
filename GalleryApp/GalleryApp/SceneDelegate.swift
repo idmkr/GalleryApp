@@ -10,15 +10,20 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    private var coreDataStack: CoreDataStack?
 
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
-        let viewModel = GalleryViewModel()
+
+        let stack = CoreDataStack()
+        coreDataStack = stack
+        let favourites = FavouritesRepository(stack: stack)
+        let viewModel = GalleryViewModel(service: PhotosService(), favourites: favourites)
         let galleryViewController = GalleryViewController(viewModel: viewModel)
+
         window.rootViewController = UINavigationController(rootViewController: galleryViewController)
         window.makeKeyAndVisible()
         self.window = window

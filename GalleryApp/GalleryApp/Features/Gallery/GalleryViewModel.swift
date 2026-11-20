@@ -7,12 +7,18 @@ final class GalleryViewModel {
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
 
+    let favourites: FavouritesRepositoryProtocol
     private let service: PhotosServiceProtocol
     private var currentPage = 0
     private var canLoadMore = true
 
-    init(service: PhotosServiceProtocol = PhotosService()) {
+    init(service: PhotosServiceProtocol, favourites: FavouritesRepositoryProtocol) {
         self.service = service
+        self.favourites = favourites
+    }
+
+    func isFavourite(_ photo: Photo) -> Bool {
+        favourites.isFavourite(id: photo.id)
     }
 
     func loadNextPage() async {
@@ -32,10 +38,9 @@ final class GalleryViewModel {
         }
     }
 
-    /// Вызывается, когда на экране показывается ячейка с данным индексом.
+    /// Called when a cell with the given index is about to be displayed.
     func loadMoreIfNeeded(currentIndex: Int) async {
-        let threshold = photos.count - 5
-        if currentIndex >= threshold {
+        if currentIndex >= photos.count - 5 {
             await loadNextPage()
         }
     }

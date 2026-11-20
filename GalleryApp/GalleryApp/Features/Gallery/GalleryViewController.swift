@@ -81,11 +81,12 @@ final class GalleryViewController: UIViewController {
     private func setupDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
             collectionView: collectionView
-        ) { collectionView, indexPath, photo in
+        ) { [weak self] collectionView, indexPath, photo in
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PhotoCell.reuseIdentifier,
                 for: indexPath) as? PhotoCell
-            cell?.configure(with: photo, isFavourite: false)
+            let isFavourite = self?.viewModel.isFavourite(photo) ?? false
+            cell?.configure(with: photo, isFavourite: isFavourite)
             return cell
         }
     }
@@ -93,12 +94,13 @@ final class GalleryViewController: UIViewController {
     // MARK: - Binding
 
     private func bindViewModel() {
-        viewModel.$photos
+        Publishers.CombineLatest(viewModel.$photos, viewModel.favourites.favouritesPublisher)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] photos in
+            .sink { [weak self] photos, _ in
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
                 snapshot.appendSections([.main])
                 snapshot.appendItems(photos)
+                snapshot.reconfigureItems(photos)
                 self?.dataSource.apply(snapshot, animatingDifferences: true)
             }
             .store(in: &cancellables)
@@ -136,9 +138,11 @@ final class GalleryViewController: UIViewController {
 // MARK: - UICollectionViewDelegate
 
 extension GalleryViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
-        Task { await viewModel.loadMoreIfNeeded(currentIndex: indexPath.item) }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pager = DetailPagerViewController(
+            photos: viewModel.photos,
+            startIndex: indexPath.item,
+            favourites: viewModel.favourites)
+        navigationController?.pushViewController(pager, animated: true)
     }
 }
