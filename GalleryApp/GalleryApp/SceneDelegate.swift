@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UINavigationController(rootViewController: GalleryViewController())
+        let viewModel = GalleryViewModel()
+        let galleryViewController = GalleryViewController(viewModel: viewModel)
+        window.rootViewController = UINavigationController(rootViewController: galleryViewController)
         window.makeKeyAndVisible()
         self.window = window
     }

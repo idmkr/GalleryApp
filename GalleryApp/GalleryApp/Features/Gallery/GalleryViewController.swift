@@ -10,7 +10,7 @@ final class GalleryViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>!
     private let spinner = UIActivityIndicatorView(style: .large)
 
-    init(viewModel: GalleryViewModel = GalleryViewModel()) {
+    init(viewModel: GalleryViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         title = "Gallery"
