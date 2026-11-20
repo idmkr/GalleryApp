@@ -60,3 +60,13 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# API keys
+Config.xcconfig
+
+# macOS
+.DS_Store
+
+# API keys (any local config, except the example)
+Config*.xcconfig
+!Config.example.xcconfig
