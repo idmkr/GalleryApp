@@ -137,7 +137,15 @@ final class GalleryViewController: UIViewController {
 
 // MARK: - UICollectionViewDelegate
 
+// MARK: - UICollectionViewDelegate
+
 extension GalleryViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        Task { await viewModel.loadMoreIfNeeded(currentIndex: indexPath.item) }
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pager = DetailPagerViewController(
             photos: viewModel.photos,
