@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/eea143d2-9173-4df3-8453-464ea5cc420d
 # GalleryApp
 
 iOS gallery app (UIKit, MVVM) that browses photos from the Unsplash API and lets you keep favourites offline.
@@ -9,6 +11,11 @@ iOS gallery app (UIKit, MVVM) that browses photos from the Unsplash API and lets
 | Gallery | Detail | Favourites |
 |---|---|---|
 | ![Gallery](Screenshots/gallery.png) | ![Detail](Screenshots/detail.png) | ![Favourites](Screenshots/favourites.png) |
+https://github.com/user-attachments/assets/f1d10a0d-1d33-4c82-8e25-2c4cd7d5df3a
+
+
+
+
 
 ## Features
 
